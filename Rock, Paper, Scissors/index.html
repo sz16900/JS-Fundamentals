@@ -10,11 +10,17 @@
 
 <body>
 
+    <h1>Rock, Paper, Scissors Game!</h1>
+    <h4>Please, open your console and initialize the game by typing -> game()</h4>
+
     <script>
         let hand = ['rock', 'paper', 'scissors'];
 
         function game() {
-            let score = 0
+
+            let score = 0;
+            let compScore = 0;
+
             function playRound() {
                 let computerSelection = computerPlay();
                 let playerSelection = playerPlay();
@@ -27,50 +33,62 @@
                 function playerPlay() {
                     let pass = false;
                     do {
-                        let x = prompt("Choose: rock, paper, scissors").toLocaleLowerCase();
+                        let x = prompt("Please choose: rock, paper, scissors").toLocaleLowerCase();
                         if (x === 'rock' || x === 'paper' || x === 'scissors') {
                             pass = true;
                             return x;
+                        } else {
+                            let x = prompt("You MUST choose: rock, paper, scissors").toLocaleLowerCase();
                         }
                     } while (pass == false);
                 }
 
                 if (playerSelection === computerSelection) {
+                    console.log("Your score is " + score);
+                    console.log("The computer score is " + compScore);
                     return "It's a tie";
                 }
                 if (playerSelection === 'rock') {
                     if (computerSelection === 'scissors') {
-                        score += 1;
+                        console.log("Your Score is " + (score += 1));
+                        console.log("The computer score is " + compScore);
+
                         return 'You Win'
                     } else {
+                        console.log("Your score is " + score);
+                        console.log("The computer score is " + (compScore += 1));
                         return 'You Lose.'
                     }
                 }
                 if (playerSelection === "paper") {
                     if (computerSelection === "rock") {
-                        score += 1;
+                        console.log("Your Score is " + (score += 1));
+                        console.log("The computer score is " + compScore);
                         return "You win!";
                     } else {
-                        return "You lose! Try again.";
+                        console.log("Your score is " + score);
+                        console.log("The computer score is " + (compScore += 1));
+                        return "You lose";
                     }
                 }
                 if (playerSelection === "scissors") {
                     if (computerSelection === "rock") {
+                        console.log("Your score is " + score);
+                        console.log("The computer score is " + (compScore += 1));
                         return "You lose! Try again.";
                     } else {
-                        score += 1;
+                        console.log("Your Score is " + (score += 1));
+                        console.log("The computer score is " + compScore);
                         return "You win!";
                     }
                 }
             };
 
-            for (i = 0; i < 5; i++) {
-                console.log(playRound());
-            }
+            while (true) { console.log(playRound()) };
             return score;
         }
 
-        console.log("Your Total score is: " + game());
+        // console.log("Your Total score is: " + game());
 
     </script>
 </body>
