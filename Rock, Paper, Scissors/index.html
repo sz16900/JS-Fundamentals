@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        let hand = ['rock', 'paper', 'scissors'];
+
+        function game() {
+            let score = 0
+            function playRound() {
+                let computerSelection = computerPlay();
+                let playerSelection = playerPlay();
+
+                function computerPlay() {
+                    let x = Math.floor(Math.random() * 3);
+                    return hand[x];
+                }
+
+                function playerPlay() {
+                    let pass = false;
+                    do {
+                        let x = prompt("Choose: rock, paper, scissors").toLocaleLowerCase();
+                        if (x === 'rock' || x === 'paper' || x === 'scissors') {
+                            pass = true;
+                            return x;
+                        }
+                    } while (pass == false);
+                }
+
+                if (playerSelection === computerSelection) {
+                    return "It's a tie";
+                }
+                if (playerSelection === 'rock') {
+                    if (computerSelection === 'scissors') {
+                        score += 1;
+                        return 'You Win'
+                    } else {
+                        return 'You Lose.'
+                    }
+                }
+                if (playerSelection === "paper") {
+                    if (computerSelection === "rock") {
+                        score += 1;
+                        return "You win!";
+                    } else {
+                        return "You lose! Try again.";
+                    }
+                }
+                if (playerSelection === "scissors") {
+                    if (computerSelection === "rock") {
+                        return "You lose! Try again.";
+                    } else {
+                        score += 1;
+                        return "You win!";
+                    }
+                }
+            };
+
+            for (i = 0; i < 5; i++) {
+                console.log(playRound());
+            }
+            return score;
+        }
+
+        console.log("Your Total score is: " + game());
+
+    </script>
+</body>
+
+</html>
